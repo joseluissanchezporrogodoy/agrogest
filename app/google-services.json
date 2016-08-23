@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "400657795596",
+    "firebase_url": "https://agrogest-dffd2.firebaseio.com",
+    "project_id": "agrogest-dffd2",
+    "storage_bucket": "agrogest-dffd2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:400657795596:android:70139d4ede2cc014",
+        "android_client_info": {
+          "package_name": "com.example.joseluissanchez_porrogodoy.agrogest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "400657795596-bcg0h5vj488c2e0hhebu064j9fhld328.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4Onz5DgxArZQ4L782pdjJ8MyjLW63sF8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
