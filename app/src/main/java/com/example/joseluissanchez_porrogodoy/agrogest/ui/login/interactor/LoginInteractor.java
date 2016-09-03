@@ -1,4 +1,4 @@
-package com.example.joseluissanchez_porrogodoy.agrogest.interactor;
+package com.example.joseluissanchez_porrogodoy.agrogest.ui.login.interactor;
 
 /**
  * Created by joseluissanchez-porrogodoy on 24/8/16.

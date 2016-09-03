@@ -1,8 +1,7 @@
-package com.example.joseluissanchez_porrogodoy.agrogest.Activity;
+package com.example.joseluissanchez_porrogodoy.agrogest.ui.login.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -13,14 +12,13 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.joseluissanchez_porrogodoy.agrogest.R;
-import com.example.joseluissanchez_porrogodoy.agrogest.presenter.LoginPresenter;
-import com.example.joseluissanchez_porrogodoy.agrogest.presenter.LoginPresenterImpl;
-import com.example.joseluissanchez_porrogodoy.agrogest.view.LoginView;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 
+import com.example.joseluissanchez_porrogodoy.agrogest.ui.Activity.MainActivity;
+import com.example.joseluissanchez_porrogodoy.agrogest.ui.Activity.ResetPasswordActivity;
+import com.example.joseluissanchez_porrogodoy.agrogest.ui.registration.view.SignupActivity;
+import com.example.joseluissanchez_porrogodoy.agrogest.ui.login.presenter.LoginPresenterImpl;
+import com.google.firebase.auth.FirebaseAuth;
+import com.example.joseluissanchez_porrogodoy.agrogest.ui.login.presenter.LoginPresenter;
 public class LoginActivity extends AppCompatActivity implements LoginView {
 
     private EditText inputEmail, inputPassword;
@@ -31,70 +29,44 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        presenter = new LoginPresenterImpl(this);
-
-        //////////INTERACTOR/////////////////////////
-        //Get Firebase auth instance
-        auth = FirebaseAuth.getInstance();
-
-        if (auth.getCurrentUser() != null) {
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-            finish();
-        }
-
         // set the view now
         setContentView(R.layout.activity_login);
-
+        createUI();
+    }
+    private void createUI() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.password);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         btnSignup = (Button) findViewById(R.id.btn_signup);
         btnLogin = (Button) findViewById(R.id.btn_login);
         btnReset = (Button) findViewById(R.id.btn_reset_password);
-
-        //Get Firebase auth instance
-        auth = FirebaseAuth.getInstance();
-
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              goToSingup();
+                presenter.goToSingup();
             }
         });
 
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               goToResetPassword();
+                presenter.goToResetPassword();
             }
         });
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                String email = inputEmail.getText().toString();
-                final String password = inputPassword.getText().toString();
-
-                if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                progressBar.setVisibility(View.VISIBLE);
-                presenter.receiveUserLogin(email,password);
-
+                presenter.receiveUserLogin(inputEmail.getText().toString(),inputPassword.getText().toString());
             }
         });
+        presenter = new LoginPresenterImpl(this);
+    }
+    @Override
+    public void showAlertMessage(String message) {
+        Toast.makeText(getApplicationContext(),message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -116,7 +88,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
     @Override
     public void onFailure() {
-
+        Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
     }
 
     @Override
