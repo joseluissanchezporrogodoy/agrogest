@@ -1,4 +1,4 @@
-package com.example.joseluissanchez_porrogodoy.agrogest.ui.fragment;
+package com.example.joseluissanchez_porrogodoy.agrogest.ui.fragment.fincas;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
@@ -20,4 +20,10 @@ public class ListaDeFincas extends FincaListFragment {
 
         return myTopPostsQuery;
     }
+
+//    @Override
+//    public boolean onContextItemSelected(MenuItem item) {
+//        return super.onContextItemSelected(item);
+//
+//    }
 }

@@ -1,4 +1,4 @@
-package com.example.joseluissanchez_porrogodoy.agrogest.ui.fragment;
+package com.example.joseluissanchez_porrogodoy.agrogest.ui.fragment.fincas;
 
 
 import android.content.Intent;

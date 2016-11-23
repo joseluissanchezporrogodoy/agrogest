@@ -7,7 +7,7 @@
 
 
 
-    <fragment android:name="com.example.joseluissanchez_porrogodoy.agrogest.ui.fragment.ListaDeFincas"
+    <fragment android:name="com.example.joseluissanchez_porrogodoy.agrogest.ui.fragment.fincas.ListaDeFincas"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

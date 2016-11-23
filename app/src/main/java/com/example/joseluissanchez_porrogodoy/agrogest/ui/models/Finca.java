@@ -11,7 +11,7 @@ import java.util.Map;
  */
 @IgnoreExtraProperties
 public class Finca {
-
+    public String uid;
     public String name;
 
 
@@ -19,13 +19,15 @@ public class Finca {
 
     }
 
-    public Finca( String name, String description) {
+    public Finca( String name, String uid) {
+        this.uid = uid;
         this.name = name;
 
     }
     @Exclude
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
+        result.put("uid", uid);
         result.put("name", name);
         return result;
     }

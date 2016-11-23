@@ -100,9 +100,8 @@ public class NewFincaActivity extends BaseActivity {
         // Create new post at /user-posts/$userid/$postid and at
         // /posts/$postid simultaneously
         String key = mDatabase.child("fincas").push().getKey();
-        Finca finca = new Finca(name, "");
+        Finca finca = new Finca(name, key);
         Map<String, Object> postValues = finca.toMap();
-
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put("/fincas/" + key, postValues);
         mDatabase.updateChildren(childUpdates);
