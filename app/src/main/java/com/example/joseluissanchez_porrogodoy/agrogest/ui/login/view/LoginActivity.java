@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,6 +36,9 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         // set the view now
         setContentView(R.layout.activity_login);
         createUI();
+        if (auth.getCurrentUser() != null) {
+            presenter.onSuccess();
+        }
 
     }
 
@@ -62,10 +66,14 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!validateForm()) {
+                    return;
+                }
                 presenter.receiveUserLogin(inputEmail.getText().toString(), inputPassword.getText().toString());
             }
         });
         presenter = new LoginPresenterImpl(this);
+        auth = FirebaseAuth.getInstance();
     }
 
     @Override
@@ -105,6 +113,24 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         progressBar.setVisibility(View.GONE);
     }
 
+    private boolean validateForm() {
+        boolean result = true;
+        if (TextUtils.isEmpty(inputEmail.getText().toString())) {
+            inputEmail.setError("Required");
+            result = false;
+        } else {
+            inputEmail.setError(null);
+        }
+
+        if (TextUtils.isEmpty(inputPassword.getText().toString())) {
+            inputPassword.setError("Required");
+            result = false;
+        } else {
+            inputPassword.setError(null);
+        }
+
+        return result;
+    }
 
 
 }
