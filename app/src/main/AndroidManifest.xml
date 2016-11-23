@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.joseluissanchez_porrogodoy.agrogest">
+
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
+        android:name=".ui.application.Application"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name=".ui.application.Application">
+        android:theme="@style/AppTheme">
         <activity
             android:name=".ui.login.view.LoginActivity"
             android:theme="@style/AppTheme">
@@ -39,7 +41,8 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".ui.activity.NewFincaActivity"></activity>
+        <activity android:name=".ui.activity.NewFincaActivity" />
+        <activity android:name=".ui.activity.SignInActivity"></activity>
     </application>
 
 </manifest>
