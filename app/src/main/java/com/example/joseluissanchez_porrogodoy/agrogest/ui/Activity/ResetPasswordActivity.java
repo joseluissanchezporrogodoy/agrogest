@@ -1,4 +1,4 @@
-package com.example.joseluissanchez_porrogodoy.agrogest.ui.Activity;
+package com.example.joseluissanchez_porrogodoy.agrogest.ui.activity;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

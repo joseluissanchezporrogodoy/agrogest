@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,12 +12,15 @@ import android.widget.Toast;
 
 import com.example.joseluissanchez_porrogodoy.agrogest.R;
 
-import com.example.joseluissanchez_porrogodoy.agrogest.ui.Activity.MainActivity;
-import com.example.joseluissanchez_porrogodoy.agrogest.ui.Activity.ResetPasswordActivity;
+import com.example.joseluissanchez_porrogodoy.agrogest.ui.activity.FincaListActivity;
+import com.example.joseluissanchez_porrogodoy.agrogest.ui.activity.MainActivity;
+import com.example.joseluissanchez_porrogodoy.agrogest.ui.activity.ResetPasswordActivity;
 import com.example.joseluissanchez_porrogodoy.agrogest.ui.registration.view.SignupActivity;
 import com.example.joseluissanchez_porrogodoy.agrogest.ui.login.presenter.LoginPresenterImpl;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.example.joseluissanchez_porrogodoy.agrogest.ui.login.presenter.LoginPresenter;
+
 public class LoginActivity extends AppCompatActivity implements LoginView {
 
     private EditText inputEmail, inputPassword;
@@ -26,16 +28,17 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     private ProgressBar progressBar;
     private Button btnSignup, btnLogin, btnReset;
     private LoginPresenter presenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // set the view now
         setContentView(R.layout.activity_login);
         createUI();
+
     }
+
     private void createUI() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.password);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -59,14 +62,15 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.receiveUserLogin(inputEmail.getText().toString(),inputPassword.getText().toString());
+                presenter.receiveUserLogin(inputEmail.getText().toString(), inputPassword.getText().toString());
             }
         });
         presenter = new LoginPresenterImpl(this);
     }
+
     @Override
     public void showAlertMessage(String message) {
-        Toast.makeText(getApplicationContext(),message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -81,7 +85,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
     @Override
     public void logTheUserIn() {
-        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        Intent intent = new Intent(LoginActivity.this, FincaListActivity.class);
         startActivity(intent);
         finish();
     }
@@ -100,6 +104,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     public void stopProgressBar() {
         progressBar.setVisibility(View.GONE);
     }
+
 
 
 }
