@@ -1,7 +1,6 @@
-package com.example.joseluissanchez_porrogodoy.agrogest.ui.fragment.parcelas;
+package com.example.joseluissanchez_porrogodoy.agrogest.ui.fragment.cultivos;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,12 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.joseluissanchez_porrogodoy.agrogest.R;
-import com.example.joseluissanchez_porrogodoy.agrogest.ui.activity.CultivoListActivity;
-import com.example.joseluissanchez_porrogodoy.agrogest.ui.activity.ParcelaListActivity;
-import com.example.joseluissanchez_porrogodoy.agrogest.ui.models.Parcela;
-import com.example.joseluissanchez_porrogodoy.agrogest.ui.models.Parcela;
-import com.example.joseluissanchez_porrogodoy.agrogest.ui.viewholder.ParcelaViewHolder;
-import com.example.joseluissanchez_porrogodoy.agrogest.ui.viewholder.ParcelaViewHolder;
+import com.example.joseluissanchez_porrogodoy.agrogest.ui.models.Cultivo;
+import com.example.joseluissanchez_porrogodoy.agrogest.ui.viewholder.CultivoViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -25,14 +20,14 @@ import com.google.firebase.database.Query;
 /**
  * A simple {@link Fragment} subclass.
  */
-public abstract class ParcelaListFragment extends Fragment {
+public  abstract class CultivoListFragment extends Fragment {
 
-    private static final String TAG = "ParcelaListFragment";
+    private static final String TAG = "CultivoListFragment";
     private DatabaseReference mDatabase;
-    private FirebaseRecyclerAdapter<Parcela,ParcelaViewHolder> mAdapter;
+    private FirebaseRecyclerAdapter<Cultivo,CultivoViewHolder> mAdapter;
     private RecyclerView mRecycler;
     private LinearLayoutManager mManager;
-    public ParcelaListFragment() {
+    public CultivoListFragment() {
         // Required empty public constructor
     }
 
@@ -57,21 +52,19 @@ public abstract class ParcelaListFragment extends Fragment {
 
         // Set up FirebaseRecyclerAdapter with the Query
         Query postsQuery = getQuery(mDatabase);
-        
-        mAdapter = new FirebaseRecyclerAdapter<Parcela, ParcelaViewHolder>(Parcela.class, R.layout.item_parcela, ParcelaViewHolder.class, postsQuery) {
+
+        mAdapter = new FirebaseRecyclerAdapter<Cultivo, CultivoViewHolder>(Cultivo.class, R.layout.item_cultivo, CultivoViewHolder.class, postsQuery) {
             @Override
-            protected void populateViewHolder(final ParcelaViewHolder viewHolder, final Parcela model, final int position) {
+            protected void populateViewHolder(final CultivoViewHolder viewHolder, final Cultivo model, final int position) {
                 final DatabaseReference postRef = getRef(position);
 
                 // Set click listener for the whole post view
-                final String uidParcela = postRef.getKey();
+                final String postKey = postRef.getKey();
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 
-                        Intent intent = new Intent(getActivity(), CultivoListActivity.class);
-                        intent.putExtra(CultivoListActivity.EXTRA_PARCELA_UID, uidParcela);
-                        startActivity(intent);
+
                     }
                 });
 

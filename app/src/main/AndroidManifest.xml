@@ -43,7 +43,9 @@
 
         <activity android:name=".ui.activity.NewFincaActivity" />
         <activity android:name=".ui.activity.ParcelaListActivity" />
-        <activity android:name=".ui.activity.NewParcelaActivity"></activity>
+        <activity android:name=".ui.activity.NewParcelaActivity" />
+        <activity android:name=".ui.activity.CultivoListActivity" />
+        <activity android:name=".ui.activity.NewCultivoActivity"></activity>
     </application>
 
 </manifest>
