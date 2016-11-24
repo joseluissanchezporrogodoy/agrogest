@@ -18,7 +18,7 @@ public class FincaListActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finca_list);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fbFinca);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

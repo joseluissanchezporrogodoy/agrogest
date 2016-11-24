@@ -1,7 +1,7 @@
 package com.example.joseluissanchez_porrogodoy.agrogest.ui.activity;
 
-import android.support.design.widget.FloatingActionButton;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.joseluissanchez_porrogodoy.agrogest.R;
-import com.example.joseluissanchez_porrogodoy.agrogest.ui.models.Finca;
+import com.example.joseluissanchez_porrogodoy.agrogest.ui.models.Parcela;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -19,32 +19,40 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 import java.util.Map;
 
-public class NewFincaActivity extends BaseActivity {
-    private static final String TAG = "NewFincaActivity";
+import static com.example.joseluissanchez_porrogodoy.agrogest.ui.activity.ParcelaListActivity.EXTRA_FINCA_UID;
+
+public class NewParcelaActivity extends BaseActivity {
+    private static final String TAG = "NewParcelaActivity";
     private static final String REQUIRED = "Required";
 
     private DatabaseReference mDatabase;
     private EditText mNameField;
+    private EditText mAreaField;
     private FloatingActionButton mSubmitButton;
-
+    private String uidFinca;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_finca);
+        setContentView(R.layout.activity_new_parcela);
+        uidFinca = getIntent().getStringExtra(EXTRA_FINCA_UID);
+        if (uidFinca == null) {
+            throw new IllegalArgumentException("Must pass EXTRA_POST_KEY");
+        }
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        mNameField = (EditText) findViewById(R.id.field_name_finca);
-        mSubmitButton = (FloatingActionButton) findViewById(R.id.fab_submit_new_finca);
+        mNameField = (EditText) findViewById(R.id.field_name_parcela);
+        mAreaField = (EditText) findViewById(R.id.field_area_parcela);
+        mSubmitButton = (FloatingActionButton) findViewById(R.id.fab_submit_new_parcela);
 
         mSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                submitFinca();
+                submitParcela();
             }
         });
     }
-    private void submitFinca() {
+    private void submitParcela() {
         final String name = mNameField.getText().toString();
-
+        final String area = mAreaField.getText().toString();
 
         // Title is required
         if (TextUtils.isEmpty(name)) {
@@ -56,9 +64,9 @@ public class NewFincaActivity extends BaseActivity {
 
         // Disable button so there are no multi-posts
         setEditingEnabled(false);
-        Toast.makeText(this, "Posting...", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Enviando...", Toast.LENGTH_SHORT).show();
 
-        // [START single_value_read]
+
         final String userId = getUid();
         mDatabase.child("users").child(userId).addListenerForSingleValueEvent(
                 new ValueEventListener() {
@@ -66,15 +74,15 @@ public class NewFincaActivity extends BaseActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
 
-                        // [START_EXCLUDE]
-
-                        writeNewFinca(name);
 
 
-                        // Finish this Activity, back to the stream
+                        writeNewParcela(name,area);
+
+
+
                         setEditingEnabled(true);
                         finish();
-                        // [END_EXCLUDE]
+
                     }
 
                     @Override
@@ -95,14 +103,15 @@ public class NewFincaActivity extends BaseActivity {
             mSubmitButton.setVisibility(View.GONE);
         }
     }
-    private void writeNewFinca( String name) {
+    private void writeNewParcela( String name,String area) {
         // Create new post at /user-posts/$userid/$postid and at
         // /posts/$postid simultaneously
-        String key = mDatabase.child("fincas").push().getKey();
-        Finca finca = new Finca(name, key);
-        Map<String, Object> postValues = finca.toMap();
+        String key = mDatabase.child("parcelas").push().getKey();
+        Parcela parcela = new Parcela(key,name,uidFinca,area);
+        Map<String, Object> postValues = parcela.toMap();
         Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put("/fincas/" + key, postValues);
+        childUpdates.put("/parcelas/" + key, postValues);
+        childUpdates.put("/fincas-parcelas/" + uidFinca + "/" + key, postValues);
         mDatabase.updateChildren(childUpdates);
     }
     // [END

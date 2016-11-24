@@ -8,36 +8,37 @@ import android.widget.TextView;
 
 import com.example.joseluissanchez_porrogodoy.agrogest.R;
 import com.example.joseluissanchez_porrogodoy.agrogest.ui.models.Finca;
+import com.example.joseluissanchez_porrogodoy.agrogest.ui.models.Parcela;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 /**
- * Created by joseluissanchez-porrogodoy on 21/11/2016.
+ * Created by joseluissanchez-porrogodoy on 23/11/2016.
  */
 
-public class FincaViewHolder extends RecyclerView.ViewHolder {//implements //View.OnCreateContextMenuListener {
+public class ParcelaViewHolder extends RecyclerView.ViewHolder {//implements //View.OnCreateContextMenuListener {
     public TextView nameView;
-    private Finca mFinca;
+    public TextView areaView;
+    private Parcela mParcela;
 
-    public FincaViewHolder(View itemView) {
+    public ParcelaViewHolder(View itemView) {
         super(itemView);
 
-        nameView = (TextView) itemView.findViewById(R.id.finca_name);
+        nameView = (TextView) itemView.findViewById(R.id.parcela_name);
+        areaView = (TextView) itemView.findViewById(R.id.parcela_area);
         itemView.setOnCreateContextMenuListener(mOnCreateContextMenuListener);
-       // itemView.setOnCreateContextMenuListener(this);
+
     }
-    public void bind(Finca finca) {
-        mFinca= finca;
-        nameView.setText(finca.name);
-
-
+    public void bind(Parcela parcela) {
+        mParcela = parcela;
+        nameView.setText(parcela.name);
     }
 
 
     private final View.OnCreateContextMenuListener mOnCreateContextMenuListener = new View.OnCreateContextMenuListener() {
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-            if (mFinca!= null) {
+            if (mParcela != null) {
                 MenuItem myActionItem = menu.add("Borrar");
                 myActionItem.setOnMenuItemClickListener(mOnMyActionClickListener);
             }
@@ -47,8 +48,10 @@ public class FincaViewHolder extends RecyclerView.ViewHolder {//implements //Vie
     private final MenuItem.OnMenuItemClickListener mOnMyActionClickListener = new MenuItem.OnMenuItemClickListener() {
         @Override
         public boolean onMenuItemClick(MenuItem item) {
+            //todo: process item click, mData is available here!!!
             DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference();
-            databaseReference.child("fincas").child(mFinca.uid).removeValue();
+            databaseReference.child("parcelas").child(mParcela.uid).removeValue();
+            databaseReference.child("fincas-parcelas").child(mParcela.uidFinca).child(mParcela.uid).removeValue();
             return true;
         }
     };

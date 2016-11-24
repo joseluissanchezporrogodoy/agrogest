@@ -42,6 +42,8 @@
             android:value="@integer/google_play_services_version" />
 
         <activity android:name=".ui.activity.NewFincaActivity" />
+        <activity android:name=".ui.activity.ParcelaListActivity" />
+        <activity android:name=".ui.activity.NewParcelaActivity"></activity>
     </application>
 
 </manifest>

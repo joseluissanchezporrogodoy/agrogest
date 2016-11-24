@@ -21,9 +21,4 @@ public class ListaDeFincas extends FincaListFragment {
         return myTopPostsQuery;
     }
 
-//    @Override
-//    public boolean onContextItemSelected(MenuItem item) {
-//        return super.onContextItemSelected(item);
-//
-//    }
 }
