@@ -20,17 +20,6 @@
         android:hint="Title"
         android:maxLines="1" />
 
-    <EditText
-        android:id="@+id/field_area_parcela"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp"
-        android:hint="Title"
-        android:maxLines="1" />
-
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_submit_new_parcela"
         android:layout_width="wrap_content"
@@ -39,4 +28,15 @@
         android:layout_alignParentRight="true"
         android:layout_margin="16dp"
         android:src="@drawable/ic_navigation_check_24"/>
+
+    <EditText
+        android:id="@+id/field_area_parcela"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Title"
+        android:maxLines="1"
+        android:layout_below="@+id/field_name_parcela"
+        android:layout_alignLeft="@+id/field_name_parcela"
+        android:layout_alignStart="@+id/field_name_parcela"
+        android:inputType="numberDecimal" />
 </RelativeLayout>

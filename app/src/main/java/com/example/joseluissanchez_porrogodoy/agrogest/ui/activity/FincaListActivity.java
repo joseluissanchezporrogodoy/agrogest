@@ -22,7 +22,10 @@ public class FincaListActivity extends BaseActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(FincaListActivity.this, NewFincaActivity.class));
+                Intent intent = new Intent(FincaListActivity.this,NewFincaActivity.class);
+                intent.putExtra(NewFincaActivity.FINCAEDITMODE, false);
+                startActivity(intent);
+
             }
         });
     }

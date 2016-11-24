@@ -22,17 +22,28 @@ import java.util.Map;
 public class NewFincaActivity extends BaseActivity {
     private static final String TAG = "NewFincaActivity";
     private static final String REQUIRED = "Required";
-
+    public static final String FINCAEDITMODE = "fincaeditmode";
+    public static final String UIDFINCA = "uidFinca";
+    public static final String NAMEFINCA = "namefinca";
     private DatabaseReference mDatabase;
     private EditText mNameField;
     private FloatingActionButton mSubmitButton;
-
+    private boolean mEditMode;
+    private String mUidFinca;
+    private String nameFinca;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_finca);
-        mDatabase = FirebaseDatabase.getInstance().getReference();
         mNameField = (EditText) findViewById(R.id.field_name_finca);
+        mEditMode = getIntent().getBooleanExtra(FINCAEDITMODE,false);
+        if(mEditMode){
+            mUidFinca= getIntent().getStringExtra(UIDFINCA);
+            nameFinca= getIntent().getStringExtra(NAMEFINCA);
+            mNameField.setText(nameFinca);
+        }
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
         mSubmitButton = (FloatingActionButton) findViewById(R.id.fab_submit_new_finca);
 
         mSubmitButton.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +52,7 @@ public class NewFincaActivity extends BaseActivity {
                 submitFinca();
             }
         });
+
     }
     private void submitFinca() {
         final String name = mNameField.getText().toString();
@@ -56,7 +68,7 @@ public class NewFincaActivity extends BaseActivity {
 
         // Disable button so there are no multi-posts
         setEditingEnabled(false);
-        Toast.makeText(this, "Posting...", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Enviando...", Toast.LENGTH_SHORT).show();
 
         // [START single_value_read]
         final String userId = getUid();
@@ -67,9 +79,11 @@ public class NewFincaActivity extends BaseActivity {
 
 
                         // [START_EXCLUDE]
-
-                        writeNewFinca(name);
-
+                        if(!mEditMode) {
+                            writeNewFinca(name);
+                        }else {
+                            editFinca(name);
+                        }
 
                         // Finish this Activity, back to the stream
                         setEditingEnabled(true);
@@ -105,6 +119,10 @@ public class NewFincaActivity extends BaseActivity {
         childUpdates.put("/fincas/" + key, postValues);
         mDatabase.updateChildren(childUpdates);
     }
-    // [END
 
+    private void editFinca(String name) {
+
+        mDatabase.child("fincas").child(mUidFinca).child("name").setValue(name);
+
+    }
 }

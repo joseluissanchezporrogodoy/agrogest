@@ -24,23 +24,39 @@ import static com.example.joseluissanchez_porrogodoy.agrogest.ui.activity.Parcel
 public class NewParcelaActivity extends BaseActivity {
     private static final String TAG = "NewParcelaActivity";
     private static final String REQUIRED = "Required";
-
+    public static final String PARCELAEDIT = "parcelaeditmode";
+    public static final String UIDPARCELA = "uidParcela";
+    public static final String NAMEPARCELA = "nameparcela";
+    public static final String AREAPARCELA = "areaparcela";
     private DatabaseReference mDatabase;
     private EditText mNameField;
     private EditText mAreaField;
     private FloatingActionButton mSubmitButton;
     private String uidFinca;
+    private boolean mEditMode;
+    private String mUidParcela;
+    private String nameParcela;
+    private String areaParcela;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_parcela);
+        mNameField = (EditText) findViewById(R.id.field_name_parcela);
+        mAreaField = (EditText) findViewById(R.id.field_area_parcela);
         uidFinca = getIntent().getStringExtra(EXTRA_FINCA_UID);
         if (uidFinca == null) {
             throw new IllegalArgumentException("Must pass EXTRA_POST_KEY");
         }
+        mEditMode = getIntent().getBooleanExtra(PARCELAEDIT,false);
+        if(mEditMode){
+            mUidParcela= getIntent().getStringExtra(UIDPARCELA);
+            nameParcela= getIntent().getStringExtra(NAMEPARCELA);
+            areaParcela= getIntent().getStringExtra(AREAPARCELA);
+            mNameField.setText(nameParcela);
+            mAreaField.setText(areaParcela);
+
+        }
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        mNameField = (EditText) findViewById(R.id.field_name_parcela);
-        mAreaField = (EditText) findViewById(R.id.field_area_parcela);
         mSubmitButton = (FloatingActionButton) findViewById(R.id.fab_submit_new_parcela);
 
         mSubmitButton.setOnClickListener(new View.OnClickListener() {
@@ -75,9 +91,11 @@ public class NewParcelaActivity extends BaseActivity {
 
 
 
-
-                        writeNewParcela(name,area);
-
+                        if(!mEditMode) {
+                            writeNewParcela(name,area);
+                        }else{
+                            editParcela(name,area);
+                        }
 
 
                         setEditingEnabled(true);
@@ -114,6 +132,12 @@ public class NewParcelaActivity extends BaseActivity {
         childUpdates.put("/fincas-parcelas/" + uidFinca + "/" + key, postValues);
         mDatabase.updateChildren(childUpdates);
     }
-    // [END
+    private void editParcela(String name, String area) {
+
+        mDatabase.child("parcelas").child(mUidParcela).child("name").setValue(name);
+        mDatabase.child("parcelas").child(mUidParcela).child("area").setValue(area);
+        mDatabase.child("fincas-parcelas").child(uidFinca).child(mUidParcela).child("name").setValue(name);
+        mDatabase.child("fincas-parcelas").child(uidFinca).child(mUidParcela).child("area").setValue(area);
+    }
 
 }
