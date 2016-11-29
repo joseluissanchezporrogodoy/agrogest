@@ -1,6 +1,7 @@
 package com.example.joseluissanchez_porrogodoy.agrogest.ui.fragment.cultivos;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.joseluissanchez_porrogodoy.agrogest.R;
+import com.example.joseluissanchez_porrogodoy.agrogest.ui.activity.AgroMenuActivity;
+import com.example.joseluissanchez_porrogodoy.agrogest.ui.activity.ParcelaListActivity;
 import com.example.joseluissanchez_porrogodoy.agrogest.ui.models.Cultivo;
 import com.example.joseluissanchez_porrogodoy.agrogest.ui.viewholder.CultivoViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -59,11 +62,13 @@ public  abstract class CultivoListFragment extends Fragment {
                 final DatabaseReference postRef = getRef(position);
 
                 // Set click listener for the whole post view
-                final String postKey = postRef.getKey();
+                final String uuidCultivo = postRef.getKey();
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        Intent intent = new Intent(getActivity(), AgroMenuActivity.class);
+                        intent.putExtra(AgroMenuActivity.EXTRA_CULTIVO_UID, uuidCultivo);
+                        startActivity(intent);
 
                     }
                 });
