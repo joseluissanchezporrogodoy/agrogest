@@ -12,7 +12,8 @@
 
     <RadioGroup
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:id="@+id/radio">
 
         <RadioButton
             android:text="@string/estado_fenologico_1"
@@ -20,7 +21,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/radioButton"
             android:layout_weight="1"
-            android:layout_marginLeft="5dp" />
+            android:layout_marginLeft="5dp"
+            android:checked="true"/>
 
         <RadioButton
             android:text="@string/estado_fenologico_2"

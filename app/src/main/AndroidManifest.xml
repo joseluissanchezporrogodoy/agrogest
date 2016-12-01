@@ -46,7 +46,9 @@
         <activity android:name=".ui.activity.NewParcelaActivity" />
         <activity android:name=".ui.activity.CultivoListActivity" />
         <activity android:name=".ui.activity.NewCultivoActivity" />
-        <activity android:name=".ui.activity.AgroMenuActivity"></activity>
+        <activity android:name=".ui.activity.AgroMenuActivity" />
+        <activity android:name=".ui.activity.NewFenologicoActivity" />
+        <activity android:name=".ui.activity.FenologicoListActivity"></activity>
     </application>
 
 </manifest>

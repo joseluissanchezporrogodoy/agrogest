@@ -40,4 +40,8 @@
     <string name="estado_fenologico_5">Flor abierta</string>
     <string name="estado_fenologico_6">Inicio caída pétalos</string>
     <string name="estado_fenologico_1">Se ven los Sépalos (Cáliz)</string>
+    <string name="default_date_format">dd/MM/yyyy</string>
+    <string name="action_ok">ok</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
