@@ -42,6 +42,9 @@
     <string name="estado_fenologico_1">Se ven los Sépalos (Cáliz)</string>
     <string name="default_date_format">dd/MM/yyyy</string>
     <string name="action_ok">ok</string>
+    <string name="fenologia">Fenología</string>
+    <string name="pluviometria">Pluviometría</string>
+    <string name="plagas">Plagas</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

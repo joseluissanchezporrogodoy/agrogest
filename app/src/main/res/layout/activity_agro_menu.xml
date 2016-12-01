@@ -13,10 +13,11 @@
     tools:context="com.example.joseluissanchez_porrogodoy.agrogest.ui.activity.AgroMenuActivity">
 
     <TextView
-        android:text="TextView"
+        android:text="@string/fenologia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView2" />
+        android:id="@+id/textView2"
+        android:textAlignment="center" />
 
     <ImageButton
         android:layout_width="match_parent"
@@ -25,10 +26,12 @@
         android:id="@+id/btnFeno" />
 
     <TextView
-        android:text="TextView"
+        android:text="@string/pluviometria"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView3" />
+        android:id="@+id/textView3"
+        android:textStyle="normal|bold"
+        android:textAlignment="center" />
 
     <ImageButton
         android:layout_width="match_parent"
@@ -37,10 +40,12 @@
         android:id="@+id/imageButton3" />
 
     <TextView
-        android:text="TextView"
+        android:text="@string/plagas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView4" />
+        android:id="@+id/textView4"
+        android:textStyle="normal|bold"
+        android:textAlignment="center" />
 
     <ImageButton
         android:layout_width="match_parent"
