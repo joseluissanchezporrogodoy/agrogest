@@ -7,7 +7,7 @@
     <application
         android:name=".ui.application.Application"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/applogo"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -33,9 +33,7 @@
             android:label="@string/title_activity_reset_password"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ui.activity.FincaListActivity"
-            android:label="@string/title_activity_finca_list"
-            android:theme="@style/AppTheme" />
+            android:name=".ui.activity.FincaListActivity"/>
 
         <meta-data
             android:name="com.google.android.gms.version"
