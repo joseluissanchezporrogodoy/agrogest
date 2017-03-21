@@ -21,14 +21,12 @@ public class LoginInteractorImpl implements LoginInteractor {
     public LoginInteractorImpl(LoginPresenter presenter) {
         this.presenter = presenter;
         auth = FirebaseAuth.getInstance();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+
     }
 
     @Override
     public void attemptToLogIn(String email,final String password) {
-        if (auth.getCurrentUser() != null) {
-            presenter.onSuccess();
-        }
+
 
         //authenticate user
         auth.signInWithEmailAndPassword(email, password)

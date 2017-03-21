@@ -10,7 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.joseluissanchez_porrogodoy.agrogest.ui.activity.NewFincaActivity">
     <EditText
-        android:id="@+id/field_name"
+        android:id="@+id/field_name_finca"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
@@ -23,7 +23,7 @@
 
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_submit_post"
+        android:id="@+id/fab_submit_new_finca"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
