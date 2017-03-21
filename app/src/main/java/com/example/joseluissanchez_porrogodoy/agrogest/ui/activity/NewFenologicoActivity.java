@@ -180,6 +180,7 @@ public class NewFenologicoActivity extends BaseActivity {
         mDatabase.child("fenologicos").child(uidFenolofico).child("state").setValue(state);
         mDatabase.child("fenologicos").child(uidFenolofico).child("imageUrl").setValue(mImageURL);
         mDatabase.child("fenologicos").child(uidFenolofico).child("stateString").setValue(stateString);
+
         mDatabase.child("cultivos-fenologicos").child(mUidCultivo).child(uidFenolofico).child("date").setValue(date);
         mDatabase.child("cultivos-fenologicos").child(mUidCultivo).child(uidFenolofico).child("state").setValue(state);
         mDatabase.child("cultivos-fenologicos").child(mUidCultivo).child(uidFenolofico).child("imageUrl").setValue(mImageURL);

@@ -21,10 +21,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activity.MainActivity"
-            android:label="@string/title_activity_profile"
-            android:theme="@style/AppTheme" />
-        <activity
             android:name=".ui.registration.view.SignupActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme" />
@@ -32,8 +28,7 @@
             android:name=".ui.activity.ResetPasswordActivity"
             android:label="@string/title_activity_reset_password"
             android:theme="@style/AppTheme" />
-        <activity
-            android:name=".ui.activity.FincaListActivity"/>
+        <activity android:name=".ui.activity.FincaListActivity" />
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -46,7 +41,9 @@
         <activity android:name=".ui.activity.NewCultivoActivity" />
         <activity android:name=".ui.activity.AgroMenuActivity" />
         <activity android:name=".ui.activity.NewFenologicoActivity" />
-        <activity android:name=".ui.activity.FenologicoListActivity"></activity>
+        <activity android:name=".ui.activity.FenologicoListActivity" />
+        <activity android:name=".ui.activity.NewPluviometricoActivity" />
+        <activity android:name=".ui.activity.NewPlagasActivity"></activity>
     </application>
 
 </manifest>

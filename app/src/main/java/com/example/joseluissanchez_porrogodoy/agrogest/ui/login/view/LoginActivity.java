@@ -3,7 +3,6 @@ package com.example.joseluissanchez_porrogodoy.agrogest.ui.login.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -14,7 +13,6 @@ import android.widget.Toast;
 import com.example.joseluissanchez_porrogodoy.agrogest.R;
 
 import com.example.joseluissanchez_porrogodoy.agrogest.ui.activity.FincaListActivity;
-import com.example.joseluissanchez_porrogodoy.agrogest.ui.activity.MainActivity;
 import com.example.joseluissanchez_porrogodoy.agrogest.ui.activity.ResetPasswordActivity;
 import com.example.joseluissanchez_porrogodoy.agrogest.ui.registration.view.SignupActivity;
 import com.example.joseluissanchez_porrogodoy.agrogest.ui.login.presenter.LoginPresenterImpl;

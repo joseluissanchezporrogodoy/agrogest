@@ -9,7 +9,7 @@ import android.view.View;
 import com.example.joseluissanchez_porrogodoy.agrogest.R;
 import com.example.joseluissanchez_porrogodoy.agrogest.ui.fragment.parcelas.ListaDeParcelas;
 
-public class ParcelaListActivity extends AppCompatActivity {
+public class ParcelaListActivity extends BaseActivity {
 
     public static final String EXTRA_FINCA_UID = "finca_uid";
     private String uidFinca;
